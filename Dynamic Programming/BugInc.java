@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class BugInc {
 	public static int[][] squares;
@@ -144,17 +147,62 @@ public class BugInc {
 	}
 
 	public static void main(String[] args) {
-		int[][] input = {
-			{ 1, 1, 1, 1, 1, 0 },
-			{ 1, 1, 1, 1, 1, 0 },
-			{ 1, 1, 0, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 0 },
-			{ 1, 1, 1, 1, 1, 1 },
-		};
+		
+		 Scanner scanner =new Scanner(System.in);
+          int numberOfCases = scanner.nextInt();
+          ArrayList<int[][]> list = new ArrayList<int[][]>();
+          for(int i=0; i<numberOfCases; i++)
+          {
+        	 int N = scanner.nextInt();
+        	 int M = scanner.nextInt();
+        	 int K = scanner.nextInt();
+        	  
+        	 int[][] input = new int[M][N];
+        	 
+        	 for (int j = 0; j < input.length; j++) {
+            	 Arrays.fill(input[j], 1);
 
-		memo.put(input, 0);
+			}
+        	 
+        	 for(int j=0; j<K; j++)
+        	 {
+        		 int colBad = scanner.nextInt();
+        		 int rowBad = scanner.nextInt();
+        		 input[rowBad-1][colBad-1]=0;
+        		 
+        		 
+        	 }
+        	 
+        	 
+        	 memo.clear();
+ 			memo.put(input, 0);
+ 			System.out.println(solve(input));
+        	 
+        	 //list.add(input);
+        	 
+        	  
+        	  
+          }
+		
+//		
+//		int[][] input = {
+//			{ 1, 1, 1, 1, 1, 0 },
+//			{ 1, 1, 1, 1, 1, 0 },
+//			{ 1, 1, 0, 1, 1, 1 },
+//			{ 1, 1, 1, 1, 1, 0 },
+//			{ 1, 1, 1, 1, 1, 1 },
+//		};
 
-		System.out.println("Expected: 4");
-		System.out.println("Answer is : " + solve(input));
+//          for (int i = 0; i < list.size(); i++) {
+//			memo.clear();
+//			memo.put(list.get(i), 0);
+//			System.out.println(solve(list.get(i)));
+//        	  
+//        	  
+//		}
+//          
+
+//		System.out.println("Expected: 4");
+//		System.out.println("Answer is : " + solve(input));
 	}
 }
